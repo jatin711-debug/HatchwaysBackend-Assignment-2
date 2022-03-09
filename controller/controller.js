@@ -1,5 +1,5 @@
 const Flight = require('../classes/Flight');
-const {  findDuplicate } = require('../utils/utils')
+const {  findDuplicate, fetchData } = require('../utils/utils')
 const tickets = [];
 
 exports.createNewTicket = async (req, res) =>{
@@ -15,7 +15,8 @@ exports.createNewTicket = async (req, res) =>{
     }
 }
 
-exports.getFlightData = ( req, res ) => {
+exports.getFlightData = async ( req, res ) => {
     const { startDate, endDate } = req.query;
-    const result = fetchData(startDate, endDate,tickets);
+    const result = await fetchData(startDate, endDate,tickets);
+    res.send({"status":JSON.stringify(result)});
 };

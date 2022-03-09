@@ -15,15 +15,13 @@ exports.findDuplicate = async (newData, oldData) =>{
     return errorMssg;
 }
 
-exports.fetchdata = function(start,end,listData){
-    let init = start;
-    const data = [];
-    let template = {date:"",flights:[
-        flightNumber=0,
-        revenue=0,
-        occupiedSeats=[]
-    ]};
-    do{
-        
-    }while(init != end);
+exports.fetchData = function(start,end,listData){
+    var startDate = new Date(start);
+    var endDate = new Date(end);
+    var resultData = listData.filter(a => {
+        var date = new Date(a.flightDate);
+        return (date >= startDate && date <= endDate);
+    });
+
+    return resultData;
 }
